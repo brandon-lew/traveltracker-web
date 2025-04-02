@@ -61,6 +61,54 @@ describe('ListComponent', () => {
     expect(component.continentChange).toHaveBeenCalled();
   });
 
+  it('should call "resetData" method', () => {
+    const resetEl = el.querySelector('button.reset') as HTMLButtonElement;
+    spyOn(component, 'resetData');
+    resetEl.dispatchEvent(new Event('click'));
+    expect(component.resetData).toHaveBeenCalled();
+  });
+
+  it('"resetData" method should change "alertMessage" boolean to true', () => {
+    component.resetData();
+    expect(component.alertMessage).toBe(true);
+  });
+
+  it('should call "cancelReset" method', () => {
+    const resetEl = el.querySelector('button.reset') as HTMLButtonElement;
+    resetEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    spyOn(component, 'cancelReset');
+    const cancelResetEl = el.querySelector(
+      'button.cancel'
+    ) as HTMLButtonElement;
+    cancelResetEl.dispatchEvent(new Event('click'));
+    expect(component.cancelReset).toHaveBeenCalled();
+  });
+
+  it('"cancelReset" method should change "alertMessage" boolean to false', () => {
+    component.resetData();
+    component.cancelReset();
+    expect(component.alertMessage).toBe(false);
+  });
+
+  it('should call "confirmReset" method', () => {
+    const resetEl = el.querySelector('button.reset') as HTMLButtonElement;
+    resetEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    spyOn(component, 'confirmReset');
+    const confirmResetEl = el.querySelector(
+      'button.confirm'
+    ) as HTMLButtonElement;
+    confirmResetEl.dispatchEvent(new Event('click'));
+    expect(component.confirmReset).toHaveBeenCalled();
+  });
+
+  it('"confirmReset" method should change "alertMessage" boolean to false', () => {
+    component.resetData();
+    component.confirmReset();
+    expect(component.alertMessage).toBe(false);
+  });
+
   it('should call "countryChange" method', () => {
     const inputEl = el.querySelector('input') as HTMLInputElement;
     spyOn(component, 'countryChange');
