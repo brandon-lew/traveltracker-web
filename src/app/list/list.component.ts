@@ -97,7 +97,14 @@ export class ListComponent implements OnInit {
 
   // ON CLICK OF RESET BUTTON
   resetData(): void {
-    this.alertMessage = true;
+    switch (this.alertMessage) {
+      case false:
+        this.alertMessage = true;
+        break;
+      case true:
+        this.alertMessage = false;
+        break;
+    }
   }
 
   // ON CLICK OF CANCEL BUTTON
