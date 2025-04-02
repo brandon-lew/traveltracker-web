@@ -39,6 +39,26 @@
   }
 }
 
+// SUBTEXT CONTAINER
+.subtext-container {
+  position: relative;
+}
+
+// RESET BUTTON
+.reset {
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  .reset__icon {
+    &:hover {
+      color: $colorPrimary;
+    }
+  }
+}
+
 // CHECKBOXES
 .checkbox {
   width: 100%;

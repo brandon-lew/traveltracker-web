@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12 text-center">
       <select
-        class="form-select mb-4"
+        class="form-select mb-2 text--primary"
         aria-label="View by continent"
         (change)="continentChange($event.target.value)"
       >
@@ -16,6 +16,36 @@
         <option value="Oceania">Oceania</option>
         <option value="South America">South America</option>
       </select>
+      <div class="subtext-container mb-4">
+        <p class="text--tertiary">view by continent</p>
+        <button class="reset btn" (click)="resetData()">
+          <i class="reset__icon fa-solid fa-trash text--tertiary"></i>
+        </button>
+        <div *ngIf="alertMessage" class="alert alert-warning" role="alert">
+          <p class="h4 mb-0">Reset Checked Data</p>
+          <p class="mb-2">
+            Are you sure? This will clear ALL checked countries/territories.
+          </p>
+          <div class="row">
+            <div class="col-6">
+              <button
+                class="btn btn-secondary btn-sm w-100"
+                (click)="cancelReset()"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="col-6">
+              <button
+                class="btn btn-danger btn-sm w-100"
+                (click)="confirmReset()"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
