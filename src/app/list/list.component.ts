@@ -13,6 +13,7 @@ import { LocalStorageService } from '../services/local-storage.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
+  alertMessage: boolean = false;
   errorMessage!: string;
   selectedCountries!: Array<string>;
   countries!: ICountry[];
@@ -92,6 +93,32 @@ export class ListComponent implements OnInit {
       },
       error: (err) => (this.errorMessage = err),
     });
+  }
+
+  // ON CLICK OF RESET BUTTON
+  resetData(): void {
+    switch (this.alertMessage) {
+      case false:
+        this.alertMessage = true;
+        break;
+      case true:
+        this.alertMessage = false;
+        break;
+    }
+  }
+
+  // ON CLICK OF CANCEL BUTTON
+  cancelReset(): void {
+    this.alertMessage = false;
+  }
+
+  // ON CLICK OF CONFIRM BUTTON
+  confirmReset(): void {
+    // reset 'visited' data
+    this.saveData('Visited', []);
+    // reset component
+    this.alertMessage = false;
+    this.ngOnInit();
   }
 
   // ON CHANGE OF COUNTRY CHECKBOX
