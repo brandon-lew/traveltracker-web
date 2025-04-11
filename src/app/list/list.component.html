@@ -18,7 +18,7 @@
       </select>
       <div class="subtext-container mb-4">
         <p class="text--primary">view by continent</p>
-        <button class="reset btn" (click)="resetData()">
+        <button class="reset btn" aria-label="Reset" (click)="resetData()">
           <i class="reset__icon fa-solid fa-trash text--tertiary"></i>
         </button>
         <div *ngIf="alertMessage" class="alert alert-warning" role="alert">
