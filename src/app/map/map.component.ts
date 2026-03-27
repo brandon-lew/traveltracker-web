@@ -49,7 +49,7 @@ export class MapComponent implements OnInit {
     private configs: Configs,
     private mapService: MapService,
     private countriesService: CountriesService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {

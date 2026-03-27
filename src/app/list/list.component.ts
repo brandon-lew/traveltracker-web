@@ -21,7 +21,7 @@ export class ListComponent implements OnInit {
 
   constructor(
     private countriesService: CountriesService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
@@ -138,7 +138,7 @@ export class ListComponent implements OnInit {
   // ON KEYPRESS OF COUNTRY BUTTON
   countryKeypress(
     event: { preventDefault: () => void; keyCode: number },
-    country: string
+    country: string,
   ) {
     event.preventDefault();
     const isEnterOrSpace = event.keyCode === 32 || event.keyCode === 13;

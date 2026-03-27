@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private countriesService: CountriesService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
