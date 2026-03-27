@@ -1,5 +1,6 @@
 // PRESET VARIABLES
-@import "../../../sass/presets";
+@use "sass:color";
+@use "../../../sass/presets" as *;
 
 .header {
   background-color: white;
@@ -21,7 +22,7 @@
 }
 
 .scrolling-shadow {
-  box-shadow: 0px 0px 10px 0px lighten($colorDarkGrey, 50%);
+  box-shadow: 0px 0px 10px 0px color.adjust($colorDarkGrey, $lightness: 50%);
 }
 
 @media (min-width: 375px) {

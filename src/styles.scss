@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Titillium+Web&display=swap");
-
 // PRESET VARIABLES
-@import "sass/presets";
+@use "sass/presets" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Titillium+Web&display=swap");
 
 html,
 body {
