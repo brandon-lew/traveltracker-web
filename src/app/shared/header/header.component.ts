@@ -9,8 +9,8 @@ import { Component, HostListener } from '@angular/core';
 export class HeaderComponent {
   isScrolling = false;
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event?: Event) {
+  @HostListener('window:scroll')
+  onScroll() {
     if (window.scrollY === 0) {
       this.isScrolling = false;
     } else if (window.scrollY > 0) {
