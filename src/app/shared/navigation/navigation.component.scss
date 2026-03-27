@@ -1,5 +1,5 @@
 // PRESET VARIABLES
-@import "../../../sass/presets";
+@use "../../../sass/presets" as *;
 
 .navbar {
   height: 4rem;

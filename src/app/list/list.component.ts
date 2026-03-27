@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 // INTERFACES
 import { ICountry } from '../interfaces/country.model';
@@ -11,17 +11,16 @@ import { LocalStorageService } from '../services/local-storage.service';
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
+  standalone: false,
 })
 export class ListComponent implements OnInit {
+  private countriesService = inject(CountriesService);
+  private localStorageService = inject(LocalStorageService);
+
   alertMessage: boolean = false;
   errorMessage!: string;
   selectedCountries!: Array<string>;
   countries!: ICountry[];
-
-  constructor(
-    private countriesService: CountriesService,
-    private localStorageService: LocalStorageService
-  ) {}
 
   ngOnInit(): void {
     // if there is local storage data, update selectedCountries array with data
@@ -137,7 +136,7 @@ export class ListComponent implements OnInit {
   // ON KEYPRESS OF COUNTRY BUTTON
   countryKeypress(
     event: { preventDefault: () => void; keyCode: number },
-    country: string
+    country: string,
   ) {
     event.preventDefault();
     const isEnterOrSpace = event.keyCode === 32 || event.keyCode === 13;

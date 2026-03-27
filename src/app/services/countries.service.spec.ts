@@ -1,11 +1,8 @@
 import { inject, TestBed } from '@angular/core/testing';
 import {
-  HttpClient,
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { of } from 'rxjs';
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 // SERVICES
 import { CountriesService } from './countries.service';
@@ -14,20 +11,20 @@ import { CountriesService } from './countries.service';
 import { ICountry } from '../interfaces/country.model';
 
 describe('CountriesService', () => {
-  let httpClientSpy: jasmine.SpyObj<HttpClient>;
   let countriesService: CountriesService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
-      providers: [
-        CountriesService,
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      imports: [HttpClientTestingModule],
+      providers: [CountriesService],
     });
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    countriesService = new CountriesService(httpClientSpy);
+    countriesService = TestBed.inject(CountriesService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should create', () => {
@@ -38,7 +35,7 @@ describe('CountriesService', () => {
     [CountriesService],
     (countriesService: CountriesService) => {
       expect(countriesService).toBeTruthy();
-    }
+    },
   ));
 
   it('#getCountries should return expected countries (HttpClient called once)', (done: DoneFn) => {
@@ -46,8 +43,6 @@ describe('CountriesService', () => {
       { name: 'A', continent: 'AA', latlng: [], checked: false },
       { name: 'B', continent: 'BB', latlng: [], checked: true },
     ];
-
-    httpClientSpy.get.and.returnValue(of(expectedCountries));
 
     countriesService.getCountries().subscribe({
       next: (data) => {
@@ -58,6 +53,9 @@ describe('CountriesService', () => {
       },
       error: done.fail,
     });
-    expect(httpClientSpy.get.calls.count()).withContext('one call').toBe(1);
+
+    const req = httpMock.expectOne('assets/data/countries.json');
+    expect(req.request.method).toBe('GET');
+    req.flush(expectedCountries);
   });
 });

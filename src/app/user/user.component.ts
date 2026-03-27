@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 // INTERFACES
 import { ICountry } from '../interfaces/country.model';
@@ -11,15 +11,14 @@ import { LocalStorageService } from '../services/local-storage.service';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  standalone: false,
 })
 export class UserComponent implements OnInit {
+  private countriesService = inject(CountriesService);
+  private localStorageService = inject(LocalStorageService);
+
   selectedCountries!: Array<string>;
   numCountries!: number;
-
-  constructor(
-    private countriesService: CountriesService,
-    private localStorageService: LocalStorageService
-  ) {}
 
   ngOnInit(): void {
     // if there is local storage data, update selectedCountries array with data

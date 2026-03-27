@@ -5,12 +5,14 @@
       <div class="user text-center">
         <p class="fs-4 text--primary">
           You have visited {{ selectedCountries.length }} ({{
-            selectedCountries.length / numCountries | percent
+          selectedCountries.length / numCountries | percent
           }}
           of {{ numCountries }}) countries/territories.
         </p>
         <ul class="user__list">
-          <li *ngFor="let selected of selectedCountries">{{ selected }}</li>
+          @for (selected of selectedCountries; track selected) {
+            <li>{{ selected }}</li>
+          }
         </ul>
       </div>
     </div>
