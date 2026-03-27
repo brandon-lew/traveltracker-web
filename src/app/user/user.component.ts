@@ -11,6 +11,7 @@ import { LocalStorageService } from '../services/local-storage.service';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  standalone: false,
 })
 export class UserComponent implements OnInit {
   selectedCountries!: Array<string>;

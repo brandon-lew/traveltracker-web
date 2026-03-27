@@ -19,6 +19,7 @@ import { Configs } from '../configs/configs.service';
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
+  standalone: false,
 })
 export class MapComponent implements OnInit {
   errorMessage!: string;
