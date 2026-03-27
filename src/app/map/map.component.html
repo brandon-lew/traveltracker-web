@@ -1,16 +1,18 @@
 <div role="main" class="map">
-  <google-map
-    *ngIf="apiLoaded"
-    [height]="height"
-    [width]="width"
-    [zoom]="zoom"
-    [center]="center"
-    [options]="options"
-  >
-    <map-advanced-marker
-      #markerElem
-      *ngFor="let marker of markers"
-      [position]="marker.position"
-    ></map-advanced-marker>
-  </google-map>
+  @if (apiLoaded) {
+    <google-map
+      [height]="height"
+      [width]="width"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+      >
+      @for (marker of markers; track marker) {
+        <map-advanced-marker
+          #markerElem
+          [position]="marker.position"
+        ></map-advanced-marker>
+      }
+    </google-map>
+  }
 </div>

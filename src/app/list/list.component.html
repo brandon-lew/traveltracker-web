@@ -6,7 +6,7 @@
         class="form-select mb-2 text--primary"
         aria-label="View by continent"
         (change)="continentChange($event.target.value)"
-      >
+        >
         <option value="All" selected>All</option>
         <option value="Africa">Africa</option>
         <option value="Antarctica">Antarctica</option>
@@ -21,55 +21,58 @@
         <button class="reset btn" aria-label="Reset" (click)="resetData()">
           <i class="reset__icon fa-solid fa-trash text--tertiary"></i>
         </button>
-        <div *ngIf="alertMessage" class="alert alert-warning" role="alert">
-          <p class="h4 mb-0">Reset Checked Data</p>
-          <p class="mb-2">
-            Are you sure? This will clear ALL checked countries/territories.
-          </p>
-          <div class="row">
-            <div class="col-6">
-              <button
-                class="cancel btn btn-secondary btn-sm w-100"
-                (click)="cancelReset()"
-              >
-                Cancel
-              </button>
-            </div>
-            <div class="col-6">
-              <button
-                class="confirm btn btn-danger btn-sm w-100"
-                (click)="confirmReset()"
-              >
-                Yes
-              </button>
+        @if (alertMessage) {
+          <div class="alert alert-warning" role="alert">
+            <p class="h4 mb-0">Reset Checked Data</p>
+            <p class="mb-2">
+              Are you sure? This will clear ALL checked countries/territories.
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <button
+                  class="cancel btn btn-secondary btn-sm w-100"
+                  (click)="cancelReset()"
+                  >
+                  Cancel
+                </button>
+              </div>
+              <div class="col-6">
+                <button
+                  class="confirm btn btn-danger btn-sm w-100"
+                  (click)="confirmReset()"
+                  >
+                  Yes
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        }
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
       <div class="list">
-        <div
-          *ngFor="let country of countries"
-          class="checkbox"
-          tabindex="0"
-          (keypress)="countryKeypress($event, country.name)"
-        >
-          <input
-            id="{{ country.name }}"
-            class="checkbox__input"
-            name="{{ country.name }}"
-            type="checkbox"
-            value="{{ country.name }}"
-            (change)="countryChange(country.name, $event.target.checked)"
-            [checked]="country.checked"
-          />
-          <label class="checkbox__label" for="{{ country.name }}">{{
-            country.name
-          }}</label>
-        </div>
+        @for (country of countries; track country) {
+          <div
+            class="checkbox"
+            tabindex="0"
+            (keypress)="countryKeypress($event, country.name)"
+            >
+            <input
+              id="{{ country.name }}"
+              class="checkbox__input"
+              name="{{ country.name }}"
+              type="checkbox"
+              value="{{ country.name }}"
+              (change)="countryChange(country.name, $event.target.checked)"
+              [checked]="country.checked"
+              />
+            <label class="checkbox__label" for="{{ country.name }}">{{
+              country.name
+            }}</label>
+          </div>
+        }
       </div>
     </div>
   </div>
