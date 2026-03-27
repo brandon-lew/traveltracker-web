@@ -25,11 +25,11 @@ export class MapService {
       .jsonp(
         'https://maps.googleapis.com/maps/api/js?key=' +
           this.configs.googleMapsApiKey,
-        'callback'
+        'callback',
       )
       .pipe(
         map(() => true),
-        catchError(() => of(false))
+        catchError(() => of(false)),
       )
       .subscribe((loaded) => {
         this.currentApiStatus.next(loaded);

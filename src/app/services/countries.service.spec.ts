@@ -35,7 +35,7 @@ describe('CountriesService', () => {
     [CountriesService],
     (countriesService: CountriesService) => {
       expect(countriesService).toBeTruthy();
-    }
+    },
   ));
 
   it('#getCountries should return expected countries (HttpClient called once)', (done: DoneFn) => {
