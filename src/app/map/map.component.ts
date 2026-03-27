@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {} from '@angular/google-maps';
 
 // INTERFACES
@@ -22,6 +22,11 @@ import { Configs } from '../configs/configs.service';
   standalone: false,
 })
 export class MapComponent implements OnInit {
+  private configs = inject(Configs);
+  private mapService = inject(MapService);
+  private countriesService = inject(CountriesService);
+  private localStorageService = inject(LocalStorageService);
+
   errorMessage!: string;
   selectedCountries!: Array<string>;
   countries!: ICountry[];
@@ -34,25 +39,20 @@ export class MapComponent implements OnInit {
     lat: 34,
     lng: 9,
   };
-  options: google.maps.MapOptions = {
-    mapTypeId: 'roadmap',
-    zoomControl: true,
-    scrollwheel: true,
-    disableDoubleClickZoom: true,
-    maxZoom: 10,
-    minZoom: 2,
-    mapId: this.configs.googleMapsID,
-  };
+  options!: google.maps.MapOptions;
   markers: Marker[] = [];
 
-  constructor(
-    private configs: Configs,
-    private mapService: MapService,
-    private countriesService: CountriesService,
-    private localStorageService: LocalStorageService,
-  ) {}
-
   ngOnInit(): void {
+    // Initialize map options with configs value
+    this.options = {
+      mapTypeId: 'roadmap',
+      zoomControl: true,
+      scrollwheel: true,
+      disableDoubleClickZoom: true,
+      maxZoom: 10,
+      minZoom: 2,
+      mapId: this.configs.googleMapsID,
+    };
     // get api to load map
     this.mapService.obsCurrentApiStatus.subscribe((status) => {
       this.apiLoaded = status.valueOf();
