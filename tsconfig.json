@@ -2,8 +2,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "sourceMap": true,
     "esModuleInterop": true,
     "declaration": false,
@@ -14,7 +14,8 @@
     "module": "es2020",
     "useDefineForClassFields": false,
     "strict": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "lib": ["ES2022", "dom"]
   },
   "exclude": ["cypress/**/*.ts", "cypress.config.ts"]
 }
