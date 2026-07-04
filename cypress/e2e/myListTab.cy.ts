@@ -14,7 +14,7 @@ describe('My List Tab', () => {
         method: 'GET',
         url: '/assets/data/*',
       },
-      []
+      [],
     ).as('getCountryData');
     cy.visit('/');
     cy.contains('My List').click();

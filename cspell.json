@@ -8,6 +8,7 @@
     "tsparser",
     "libpeerconnection",
     "testem",
-    "latlng"
+    "latlng",
+    "xdescribe"
   ]
 }
