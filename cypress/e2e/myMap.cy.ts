@@ -11,7 +11,7 @@ describe('My Map Tab', () => {
         method: 'GET',
         url: '/assets/data/*',
       },
-      []
+      [],
     ).as('getCountryData');
     cy.visit('/');
     cy.wait('@getCountryData').then((data) => {

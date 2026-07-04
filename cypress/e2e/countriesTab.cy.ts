@@ -8,14 +8,14 @@ describe('Countries Tab', () => {
 
   it('loads reset button', () => {
     cy.visit('/');
-    cy.fixture('testData').then((data) => {
+    cy.fixture('testData').then(() => {
       cy.get('.reset').should('exist');
     });
   });
 
   it('loads alert message', () => {
     cy.visit('/');
-    cy.fixture('testData').then((data) => {
+    cy.fixture('testData').then(() => {
       cy.get('.reset').click();
       cy.get('.alert').should('exist');
     });
@@ -34,7 +34,7 @@ describe('Countries Tab', () => {
         method: 'GET',
         url: '/assets/data/*',
       },
-      []
+      [],
     ).as('getCountryData');
     cy.visit('/');
     cy.wait('@getCountryData').then((data) => {

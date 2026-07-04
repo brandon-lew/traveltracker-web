@@ -15,7 +15,8 @@
     "useDefineForClassFields": false,
     "strict": true,
     "resolveJsonModule": true,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "types": ["jasmine", "node", "cypress"]
   },
   "exclude": ["cypress/**/*.ts", "cypress.config.ts"]
 }

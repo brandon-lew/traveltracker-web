@@ -71,4 +71,24 @@ export default [
       },
     },
   },
+  {
+    files: ["**/*.cy.ts"],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        sourceType: "module",
+      },
+      globals: {
+        describe: "readonly",
+        it: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        expect: "readonly",
+        xdescribe: "readonly",
+        xit: "readonly",
+        cy: "readonly",
+        assert: "readonly",
+      },
+    },
+  },
 ];
